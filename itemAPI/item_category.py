@@ -11,7 +11,7 @@ class ObjItemCategory:
 		md = mysql_lib.MySQLData()
 		md.connect_to_db('localhost', 'root', '', 'lelanginyuk')
 		
-		result = md.exec_query('select * from item where CATEGORY_ID="'+categoryID+'"')
+		result = md.exec_query('select item_id, category_id, item_name, item_start_price, item_bid_price, item_condition, item_description, item_start_date, item_due_date from item where CATEGORY_ID="'+categoryID+'"')
 		
 		resp.set_header('Content-Type', 'application/json; charset=utf-8')
 		
@@ -26,3 +26,9 @@ class ObjItemCategory:
 		result.close
 		md.disconnect_from_db()
 		
+	def stringToDateTime(self,inputan):
+		#return inputan.strptime('%d/%m/%Y %H:%M:%S')
+		return datetime.datetime.strptime(inputan,'%d/%m/%Y %H:%M:%S')
+		
+	def datetimeToString(self,inputan):
+		return inputan.strftime('%d/%m/%Y %H:%M:%S')

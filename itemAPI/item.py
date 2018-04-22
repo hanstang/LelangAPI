@@ -11,8 +11,8 @@ class ObjItem:
 		md = mysql_lib.MySQLData()
 		md.connect_to_db('localhost', 'root', '', 'lelanginyuk')
 	
-		result = md.exec_query('select ite.item_id, ite.user_id ,kat.category_id ,kat.category_name, ite.item_name, ite.item_start_price, ite.item_bid_price, ite.item_condition, ite.item_description, ite.item_start_date, ite.item_due_date from item ite inner join kategori kat on ite.category_id = kat.category_id where ite.ITEM_ID="'+itemID+'"')
-
+		result = md.exec_query('SELECT ite.item_id, ite.user_id ,kat.category_id ,kat.category_name, ite.item_name, ite.item_start_price, ite.item_bid_price, ite.item_condition, ite.item_description, ite.item_start_date, ite.item_due_date FROM item ite INNER JOIN kategori kat ON ite.category_id = kat.category_id WHERE ite.ITEM_ID="'+itemID+'"')
+		print(itemID)
 		resp.set_header('Content-Type', 'application/json; charset=utf-8')
 		
 		items = []
